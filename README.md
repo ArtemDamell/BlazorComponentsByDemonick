@@ -1,4 +1,4 @@
-## This is a toast component for Blazor Server, created by the author in 2021.
+## This is a toast component for Blazor Server, created by me in 2021.
 
 The component uses the System.Timers namespace and includes several methods for displaying toast messages with different status codes, such as SuccessfulMessage(), WarningMessage(), and ErrorMessage(). The component also includes a method ChooseMessageWithStatusCode() that allows the user to choose a message based on a specific status code.
 
