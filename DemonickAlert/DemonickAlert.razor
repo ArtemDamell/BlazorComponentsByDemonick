@@ -1,0 +1,129 @@
+@using System.Timers
+
+@if (showMessage)
+{
+    <div class="demonick-toast demonick-fade show @CssClass demonick-toast-position">
+        <div class="demonick-toast-header @CssClass">
+            <strong class="demonick-mr-right">@Header</strong>
+            <button type="button" @onclick="CloseMessage" class="demonick-close" data-dismiss="demonick-toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="demonick-toast-body">
+            <img src="@Image" class="demonick-toast-body-image" alt="Image"/>
+            @Message
+        </div>
+    </div>
+}
+
+@code {
+    string CssClass;
+    string Image;
+    string Header;
+    string Message;
+
+    Timer timer;
+
+    bool showMessage = false;
+
+    void ElapsedTimerHandler(object sender, ElapsedEventArgs args)
+    {
+        Task.Run(CloseMessage);
+    }
+
+    public void SuccessfulMassage(string header, string message)
+    {
+        Header = header;
+        Message = message;
+        showMessage = true;
+        CssClass = "demonick-toast-bg-success";
+        Image = "demonick_toast_images/success_icon.png";
+        StartTimer();
+    }
+
+    public void WarningMassage(string header, string message)
+    {
+        Header = header;
+        Message = message;
+        showMessage = true;
+        CssClass = "demonick-toast-bg-warning";
+        Image = "demonick_toast_images/warning_icon.png";
+        StartTimer();
+    }
+
+    public void ErrorMassage(string header, string message)
+    {
+        Header = header;
+        Message = message;
+        showMessage = true;
+        CssClass = "demonick-toast-bg-error";
+        Image = "demonick_toast_images/error_icon.png";
+        StartTimer();
+    }
+
+    public void ChooseMessageWithStatusCode(int? status, string header, string message)
+    {
+        switch (status)
+        {
+            case 1:
+                SuccessfulMassage(header, message);
+                break;
+            case 2:
+                WarningMassage(header, message);
+                break;
+            case 3:
+                ErrorMassage(header, message);
+                break;
+        }
+    }
+
+    public void ChooseMessageWithStatusCode(int? status, string message)
+    {
+        switch (status)
+        {
+            case 1:
+                SuccessfulMassage("Successfull", message);
+                break;
+            case 2:
+                WarningMassage("Warning", message);
+                break;
+            case 3:
+                ErrorMassage("Error", message);
+                break;
+        }
+    }
+
+    public void ChooseMessageWithStatusCode(int status, string itemName, string action)
+    {
+        switch (status)
+        {
+            case 1:
+                SuccessfulMassage("Successfull", $"{itemName} {action} successfull!");
+                break;
+            case 2:
+                WarningMassage("Warning", $"{itemName} {action} have some warning!");
+                break;
+            case 3:
+                ErrorMassage("Error", $"{itemName} {action} failed!");
+                break;
+        }
+    }
+
+    void StartTimer()
+    {
+        timer = new Timer { Interval = 4000 };
+        timer.Elapsed += ElapsedTimerHandler;
+        timer.Start();
+        StateHasChanged();
+    }
+
+    async Task CloseMessage()
+    {
+        timer.Stop();
+        timer.Elapsed -= ElapsedTimerHandler;
+        timer.Dispose();
+        showMessage = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+}

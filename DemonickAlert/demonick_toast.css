@@ -1,0 +1,122 @@
+.demonick-toast {
+    max-width: 350px;
+    overflow: hidden;
+    font-size: .875rem;
+    background-color: rgba(255, 255, 255, .85);
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    border-radius: .25rem
+}
+
+.demonick-toast:not(:last-child) {
+    margin-bottom: .75rem
+}
+
+.demonick-toast.showing {
+    opacity: 1
+}
+
+.demonick-toast.show {
+    display: block;
+    opacity: 1
+}
+
+.demonick-toast.hide {
+    display: none
+}
+
+.demonick-toast-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .25rem .75rem;
+    color: #6c757d;
+    background-color: rgba(255, 255, 255, .85);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, .05)
+}
+
+.demonick-toast-body {
+    padding: .75rem
+}
+
+.demonick-toast-body-image {
+    max-height: 50px;
+    margin-right: 10px;
+}
+
+.demonick-toast-bg-success {
+    background-color: rgba(0, 151, 24, 0.85);
+    color: #fff;
+}
+.demonick-toast-bg-warning {
+    background-color: rgba(187, 184, 0, 0.85);
+    color: #332400;
+}
+.demonick-toast-bg-error {
+    background-color: rgba(164, 0, 0, 0.85);
+    color: #fff;
+}
+
+.demonick-toast-position {
+    min-width: 300px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.demonick-close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto
+}
+
+.demonick-close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5
+}
+
+.demonick-close:hover {
+    color: #000;
+    text-decoration: none
+}
+
+.demonick-close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
+    opacity: .75
+}
+
+button.demonick-close {
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.demonick-mr-right {
+    margin-right: auto !important;
+}
+
+.demonick-fade {
+    transition: opacity .15s linear
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .demonick-fade {
+        transition: none
+    }
+}
+
+.demonick-fade:not(.show) {
+    opacity: 0
+}
